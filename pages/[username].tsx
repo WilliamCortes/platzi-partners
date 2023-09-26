@@ -23,7 +23,7 @@ export const getStaticPaths = async () => {
 
   const results = await getAllUsers();
   const paths = results.flatMap(({ users }) =>
-    users.map((user) => ({ params: { username: user.username } }))
+    users?.map((user) => ({ params: { username: user.username } }))
   );
   return {
     paths,

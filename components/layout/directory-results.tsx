@@ -6,7 +6,7 @@ import { CheckInCircleIcon } from '@/components/icons';
 export default function DirectoryResults({ users }: { users: UserProps[] }) {
   return (
     <ul role="list" className="relative z-0 directory-divide-y">
-      {users.map((user) => (
+      {users?.map((user) => (
         <li key={user.username}>
           <Link href={`/${user.username}`}>
             <div className="relative px-6 py-4 flex items-center space-x-3 focus-within:ring-0">

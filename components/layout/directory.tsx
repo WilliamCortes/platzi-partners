@@ -65,7 +65,7 @@ export default function Directory({
         aria-label="Directory"
       >
         {debouncedQuery.length === 0 ? (
-          results.map(({ _id: letter, users }) => (
+          results?.map(({ _id: letter, users }) => (
             <div key={letter} className="relative">
               <div className="bg-dark-accent-1 px-6 py-1 text-sm font-bold text-white uppercase">
                 <h3>{letter}</h3>

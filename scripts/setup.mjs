@@ -22,7 +22,7 @@ const setup = async () => {
       return;
     }
 
-    const records = [...Array(10)].map(() => {
+    const records = [...Array(10)]?.map(() => {
       const [fName, lName] = faker.name.findName().split(' ');
       const username = faker.internet.userName(fName, lName);
       const email = faker.internet.email(fName, lName);
