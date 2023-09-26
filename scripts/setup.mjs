@@ -49,8 +49,8 @@ const setup = async () => {
   } catch (error) {
     return 'Database is not ready yet';
   } finally {
-    if (client) {
-      await client.close();
+    if (client && client?.close) {
+      await client?.close();
     }
   }
 };

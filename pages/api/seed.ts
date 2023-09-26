@@ -9,8 +9,13 @@ async function handler(_req: NextApiRequest, res: NextApiResponse) {
       error: { message }
     });
   } else {
-    await res.revalidate(`/`);
-    res.status(200).send('ok.');
+    try {
+      await res.revalidate(`/`);
+
+      res.status(200).send('ok.');
+    } catch (error) {
+      console.error('🚀 ~ file: seed.ts:17 ~ handler ~ error:', error);
+    }
   }
 }
 

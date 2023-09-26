@@ -27,16 +27,17 @@ export default function Profile({
   user: UserProps;
 }) {
   const router = useRouter();
+  //TODO review the object session
   const { data: session } = useSession();
   const [saving, setSaving] = useState(false);
   const [data, setData] = useState({
-    username: user.username,
-    image: user.image,
-    bio: user.bio || '',
-    bioMdx: user.bioMdx
+    username: user?.username,
+    image: user?.image,
+    bio: user?.bio || '',
+    bioMdx: user?.bioMdx
   });
 
-  if (data.username !== user.username) {
+  if (data.username !== user?.username) {
     setData(user);
   }
 
@@ -46,7 +47,7 @@ export default function Profile({
     (router.query.settings === 'true' && router.asPath === '/settings');
 
   const handleDismiss = useCallback(() => {
-    if (settingsPage) router.replace(`/${user.username}`);
+    if (settingsPage) router.replace(`/${user?.username}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
@@ -67,7 +68,7 @@ export default function Profile({
           ...data,
           bioMdx
         }); // optimistically show updated state for bioMdx
-        router.replace(`/${user.username}`, undefined, { shallow: true });
+        router.replace(`/${user?.username}`, undefined, { shallow: true });
       } else if (response.status === 401) {
         setError('Not authorized to edit this profile.');
       } else {
@@ -98,7 +99,7 @@ export default function Profile({
       <div>
         <div
           className={`h-48 w-full lg:h-64 
-          ${getGradient(user.username)}`}
+          ${getGradient(user?.username)}`}
         />
         <div
           className={`${profileWidth} -mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5`}
@@ -115,8 +116,8 @@ export default function Profile({
               </button>
             )}
             <BlurImage
-              src={user.image}
-              alt={user.name}
+              src={user?.image}
+              alt={user?.name}
               width={300}
               height={300}
             />
@@ -124,16 +125,16 @@ export default function Profile({
           <div className="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
             <div className="flex min-w-0 flex-1 items-center space-x-2">
               <h1 className="text-2xl font-semibold text-white truncate">
-                {user.name}
+                {user?.name}
               </h1>
-              {user.verified && (
+              {user?.verified && (
                 <CheckInCircleIcon className="w-6 h-6 text-[#0070F3]" />
               )}
             </div>
-            {user.verified ? (
+            {user?.verified ? (
               <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                 <a
-                  href={`https://github.com/${user.username}`}
+                  href={`https://github.com/${user?.username}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex justify-center px-4 py-2 border border-gray-800 hover:border-white shadow-sm text-sm font-medium rounded-md text-white font-mono bg-black focus:outline-none focus:ring-0 transition-all"
@@ -230,19 +231,26 @@ export default function Profile({
               <CheckIcon className="h-4 w-4 text-white" />
             )}
           </button>
-          <Link href={`/${user.username}`} shallow replace scroll={false}>
+          <Link
+            href={`/${user?.username}`}
+            shallow
+            replace
+            scroll={false}
+            legacyBehavior
+          >
             <a className="rounded-full border border-gray-800 hover:border-white w-12 h-12 flex justify-center items-center transition-all">
               <XIcon className="h-4 w-4 text-white" />
             </a>
           </Link>
         </div>
-      ) : session?.username === user.username ? (
+      ) : session?.user?.name === user?.username ? (
         <Link
           href={{ query: { settings: true } }}
           as="/settings"
           shallow
           replace
           scroll={false}
+          legacyBehavior
         >
           <a className="fixed bottom-10 right-10 rounded-full border bg-black border-gray-800 hover:border-white w-12 h-12 flex justify-center items-center transition-all">
             <EditIcon className="h-4 w-4 text-white" />
