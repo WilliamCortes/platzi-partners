@@ -11,6 +11,7 @@ export default function Navbar({
   setSidebarOpen: (open: boolean) => void;
 }) {
   const { data: session, status } = useSession();
+  console.log('🚀 ~ file: navbar.tsx:14 ~ session:', session);
   const [loading, setLoading] = useState(false);
 
   return (
@@ -28,7 +29,7 @@ export default function Navbar({
       </button>
       {status !== 'loading' &&
         (session?.user ? (
-          <Link href={`/${session.username}`} legacyBehavior>
+          <Link href={`/${session?.user?.name}`} legacyBehavior>
             <a className="w-8 h-8 rounded-full overflow-hidden">
               <Image
                 src={

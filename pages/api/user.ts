@@ -20,7 +20,7 @@ export default async function handler(
   } else if (req.method === 'PUT') {
     const { username, bio } = req.body;
     const session = await getSession({ req });
-    if (!session || session.username !== username) {
+    if (!session || session?.user?.name !== username) {
       return res.status(401).json({
         error: 'Unauthorized'
       });
