@@ -3,7 +3,7 @@ import Sidebar from './sidebar';
 import Navbar from './navbar';
 import Directory from './directory';
 import { ResultProps } from '@/lib/api/user';
-import Toast from '@/components/layout/toast';
+// import Toast from '@/components/layout/toast';
 import Meta, { MetaProps } from '@/components/layout/meta';
 import { useRouter } from 'next/router';
 import { LoadingDots } from '@/components/icons';
@@ -44,7 +44,7 @@ export default function Layout({
   return (
     <div className="w-full mx-auto h-screen flex overflow-hidden bg-black">
       <Meta props={meta} />
-      <Toast username={username} />
+      {/* <Toast username={username} /> */}
       <Sidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}

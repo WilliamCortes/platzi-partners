@@ -1,0 +1,186 @@
+use('test');
+
+const data = [
+  {
+    name: 'William Cortés',
+    username: 'Will',
+    email: 'williamcortes.co@gmail.com',
+    image:
+      'https://media.licdn.com/dms/image/C5603AQE-tuKM83aVmg/profile-displayphoto-shrink_200_200/0/1627499263008?e=1701302400&v=beta&t=yu91nFlkxWrZETmsNxnLM9qWEr82HDtuYTzzLgcZlhA',
+    bio: `Hola mi nombre es William, soy un Full Stack Developer entusiasta y positivo. Me encanta aprender, considero que es una herramienta para mejorar y evolucionar. Me cautivó el mundo I.T. por su dinámica, en constante cambio. 
+
+    Inicié en este campo por un curso de programación básica en #Platzi, donde hice la escuela de #JavaScript. Luego me llegó la oportunidad de realizar el Bootcamp #Henry, en donde aprendí y tuve la experiencia de realizar algunos proyectos en: #JavaScript, #React.JS, #Redux, #Node.JS, #Express, #PosgreSQL, #Html, #Css, #Github, entre otras tecnologías, aplicando metodologías ágiles (#SCRUM). 
+    
+    Me gusta encontrar soluciones innovadoras a los diferentes retos, trabajar en equipo aportando mis habilidades técnicas, mi capacidad de escucha activa y de conciliación. 
+    
+    Mis valores personales son la responsabilidad, la honestidad, la gratitud, el espíritu de servicio y la resiliencia.
+    
+    Te agradezco mucho el tiempo dedicado en escuchar esta parte de mi historia.
+    
+    Contáctame:
+    
+    Email: williamcortes.co@gmail.com
+    Github: https://github.com/WilliamCortes
+    Whatsapp: +57- 310 329 83 46`,
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Jean Dietrich',
+    username: 'Jean65',
+    email: 'Jean_Dietrich68@hotmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=62626',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Jesse Bosco',
+    username: 'Jesse.Bosco',
+    email: 'Jesse76@gmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=2984',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Steven Simonis',
+    username: 'Steven37',
+    email: 'Steven.Simonis7@hotmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=12424',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Regina Mayer',
+    username: 'Regina.Mayer',
+    email: 'Regina71@yahoo.com',
+    image: 'https://loremflickr.com/640/480/people?lock=53347',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Jane Sawayn',
+    username: 'Jane53',
+    email: 'Jane.Sawayn@yahoo.com',
+    image: 'https://loremflickr.com/640/480/people?lock=74033',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Mr. Robin',
+    username: 'Mr..Robin',
+    email: 'Mr._Robin63@hotmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=69300',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Gordon Reichel',
+    username: 'Gordon.Reichel80',
+    email: 'Gordon.Reichel@gmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=85534',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Jamie Anderson',
+    username: 'Jamie.Anderson38',
+    email: 'Jamie_Anderson9@yahoo.com',
+    image: 'https://loremflickr.com/640/480/people?lock=38405',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Benny Tremblay',
+    username: 'Benny_Tremblay48',
+    email: 'Benny_Tremblay@gmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=17674',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Irvin Adams',
+    username: 'Irvin.Adams4',
+    email: 'Irvin79@gmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=49306',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Kristine Schoen',
+    username: 'Kristine_Schoen28',
+    email: 'Kristine.Schoen3@yahoo.com',
+    image: 'https://loremflickr.com/640/480/people?lock=86645',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Courtney Luettgen',
+    username: 'Courtney39',
+    email: 'Courtney.Luettgen37@gmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=22237',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Edna Hodkiewicz',
+    username: 'Edna.Hodkiewicz54',
+    email: 'Edna.Hodkiewicz@gmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=36363',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Lynne Abbott',
+    username: 'Lynne.Abbott28',
+    email: 'Lynne96@hotmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=62792',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'April Conn',
+    username: 'April87',
+    email: 'April.Conn85@hotmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=47892',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Viola Shields',
+    username: 'Viola15',
+    email: 'Viola.Shields53@yahoo.com',
+    image: 'https://loremflickr.com/640/480/people?lock=63409',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Vera Ortiz',
+    username: 'Vera_Ortiz62',
+    email: 'Vera.Ortiz65@gmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=80248',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Shelia Feest',
+    username: 'Shelia27',
+    email: 'Shelia_Feest77@yahoo.com',
+    image: 'https://loremflickr.com/640/480/people?lock=36796',
+    followers: 0,
+    emailVerified: null
+  },
+  {
+    name: 'Elena Heaney',
+    username: 'Elena_Heaney',
+    email: 'Elena.Heaney@gmail.com',
+    image: 'https://loremflickr.com/640/480/people?lock=28126',
+    followers: 0,
+    emailVerified: null
+  }
+];
+
+db.users.drop();
+
+db.users.insertMany(data);
+
+db.users.find();
