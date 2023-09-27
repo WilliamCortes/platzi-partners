@@ -26,7 +26,13 @@ export const getStaticProps: GetStaticProps = async () => {
         }
       };
     } else {
-      throw new Error(`Connection limit reached. Please try again later.`);
+      console.error('🚀 ~ file: index.tsx *****************', { error: e });
+      // throw new Error(`Connection limit reached. Please try again later.`);
+      return {
+        props: {
+          clusterStillProvisioning: true
+        }
+      };
     }
   }
 
