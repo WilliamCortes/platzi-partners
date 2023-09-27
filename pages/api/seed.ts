@@ -1,22 +1,23 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { setup } from 'scripts/setup.mjs';
+// import { setup } from 'scripts/setup.mjs';
 
 async function handler(_req: NextApiRequest, res: NextApiResponse) {
-  const message = await setup();
+  return res.send('Disabled');
+  // const message = await setup();
 
-  if (message) {
-    res.status(500).json({
-      error: { message }
-    });
-  } else {
-    try {
-      await res.revalidate(`/`);
+  // if (message) {
+  //   res.status(200).json({
+  //     length: { message }
+  //   });
+  // } else {
+  //   try {
+  //     await res.revalidate(`/`);
 
-      res.status(200).send('ok.');
-    } catch (error) {
-      console.error('🚀 ~ file: seed.ts:17 ~ handler ~ error:', error);
-    }
-  }
+  //     res.status(200).send('ok.');
+  //   } catch (error) {
+  //     res.status(200).send('catch ok.');
+  //   }
+  // }
 }
 
 export default handler;

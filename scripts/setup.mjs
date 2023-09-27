@@ -17,9 +17,9 @@ const setup = async () => {
       .countDocuments();
 
     if (hasData) {
-      console.log('Database already exists with data');
+      console.log('Database already exists with data', { hasData });
       client.close();
-      return;
+      return Promise.resolve(hasData);
     }
 
     const records = [...Array(10)]?.map(() => {

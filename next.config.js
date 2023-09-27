@@ -11,8 +11,8 @@ const nextConfig = {
     ]
   },
   experimental: {
-    legacyBrowsers: false,
-    browsersListForSwc: true
+    legacyBrowsers: false
+    // browsersListForSwc: true
   }
 };
 
