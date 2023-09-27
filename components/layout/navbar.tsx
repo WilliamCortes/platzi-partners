@@ -4,14 +4,21 @@ import { LoadingDots } from '@/components/icons';
 import Image from 'next/image';
 import { MenuIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
+import { TCustomSession } from 'pages/api/auth/[...nextauth]';
+
+type TCustomSessionClient = {
+  data: TCustomSession;
+  status: string;
+};
 
 export default function Navbar({
   setSidebarOpen
 }: {
   setSidebarOpen: (open: boolean) => void;
 }) {
-  const { data: session, status } = useSession();
-  console.log('🚀 ~ file: navbar.tsx:14 ~ session:', session);
+  const sessionClient = useSession() as unknown as TCustomSessionClient;
+
+  const { data: session, status } = sessionClient;
   const [loading, setLoading] = useState(false);
 
   return (
@@ -29,14 +36,14 @@ export default function Navbar({
       </button>
       {status !== 'loading' &&
         (session?.user ? (
-          <Link href={`/${session?.user?.name}`} legacyBehavior>
+          <Link href={`/${session?.username}`} legacyBehavior>
             <a className="w-8 h-8 rounded-full overflow-hidden">
               <Image
                 src={
                   session.user.image ||
                   `https://avatar.tobi.sh/${session.user.name}`
                 }
-                alt={session.user.name || 'User'}
+                alt={session.username || 'User'}
                 width={300}
                 height={300}
                 placeholder="blur"

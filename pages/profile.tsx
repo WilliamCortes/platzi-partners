@@ -1,12 +1,15 @@
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
+import { TCustomSession } from './api/auth/[...nextauth]';
 
 export default function Profile() {
   return <div>Profile</div>;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const session = await getSession({ req });
+  const session: TCustomSession = (await getSession({
+    req
+  })) as unknown as TCustomSession;
   if (!session) {
     return {
       redirect: {
@@ -18,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   return {
     redirect: {
       permanent: false,
-      destination: `/${session?.user?.name}`
+      destination: `/${session?.username}`
     }
   };
 };

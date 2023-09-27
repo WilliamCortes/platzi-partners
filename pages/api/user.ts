@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { searchUser, updateUser } from 'lib/api/user';
 import { getSession } from 'next-auth/react';
 import { getMdxSource } from 'lib/api/user';
+// import { TCustomSession } from './auth/[...nextauth]';
 
 export default async function handler(
   req: NextApiRequest,
@@ -18,15 +19,17 @@ export default async function handler(
       });
     }
   } else if (req.method === 'PUT') {
-    const { username, bio } = req.body;
-    const session = await getSession({ req });
-    if (!session || session?.user?.name !== username) {
+    const { username, bio, session } = req.body;
+    // TODO: review why no has session error [next-auth][error][client_fetch_error]
+    // const session = (await getSession({ req })) as unknown as TCustomSession;
+    if (!session || session?.username !== username) {
       return res.status(401).json({
         error: 'Unauthorized'
       });
     }
     try {
       const result = await updateUser(username, bio);
+      console.log('🚀 ~ file: user.ts:32 ~ result:', result);
       if (result) {
         await res.revalidate(`/${username}`);
       }

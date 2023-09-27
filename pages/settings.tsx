@@ -3,13 +3,15 @@ import Profile from '@/components/profile';
 import { defaultMetaProps } from '@/components/layout/meta';
 import { getUser, getAllUsers, UserProps, getUserCount } from '@/lib/api/user';
 import { getSession } from 'next-auth/react';
+import { TCustomSession } from './api/auth/[...nextauth]';
 
 export default function Settings({ user }: { user: UserProps }) {
   return <Profile settings={true} user={user} />;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const session = await getSession({ req });
+  const session = (await getSession({ req })) as unknown as TCustomSession;
+
   if (!session) {
     return {
       redirect: {
@@ -22,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const results = await getAllUsers();
   const totalUsers = await getUserCount();
 
-  const user = await getUser(session?.user?.name as string);
+  const user = await getUser(session?.username as string);
 
   const meta = {
     ...defaultMetaProps,

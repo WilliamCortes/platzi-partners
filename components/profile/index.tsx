@@ -16,8 +16,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import TextareaAutosize from 'react-textarea-autosize';
 import { MDXRemote } from 'next-mdx-remote';
+import { TCustomSession } from 'pages/api/auth/[...nextauth]';
 
 export const profileWidth = 'max-w-5xl mx-auto px-4 sm:px-6 lg:px-8';
+
+type TCustomSessionClient = {
+  data: TCustomSession;
+  status: string;
+};
 
 export default function Profile({
   settings,
@@ -28,7 +34,7 @@ export default function Profile({
 }) {
   const router = useRouter();
   //TODO review the object session
-  const { data: session } = useSession();
+  const { data: session } = useSession() as unknown as TCustomSessionClient;
   const [saving, setSaving] = useState(false);
   const [data, setData] = useState({
     username: user?.username,
@@ -51,7 +57,8 @@ export default function Profile({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
-  const handleSave = async () => {
+  const handleSave = async (e: any) => {
+    e.preventDefault();
     setError('');
     setSaving(true);
     try {
@@ -60,7 +67,7 @@ export default function Profile({
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({ ...data, session })
       });
       if (response.ok) {
         const bioMdx = await response.json();
@@ -85,7 +92,7 @@ export default function Profile({
     if (e.key === 'Escape') {
       handleDismiss();
     } else if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
-      await handleSave();
+      await handleSave(e);
     }
   };
 
@@ -243,7 +250,7 @@ export default function Profile({
             </a>
           </Link>
         </div>
-      ) : session?.user?.name === user?.username ? (
+      ) : session?.username === user?.username ? (
         <Link
           href={{ query: { settings: true } }}
           as="/settings"
