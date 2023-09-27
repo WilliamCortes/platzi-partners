@@ -6,7 +6,7 @@ const data = [
     username: 'Will',
     email: 'williamcortes.co@gmail.com',
     image:
-      'https://media.licdn.com/dms/image/C5603AQE-tuKM83aVmg/profile-displayphoto-shrink_200_200/0/1627499263008?e=1701302400&v=beta&t=yu91nFlkxWrZETmsNxnLM9qWEr82HDtuYTzzLgcZlhA',
+      'https://res.cloudinary.com/dkwdjfwfc/image/upload/v1681272574/foto_rimzz7.jpg',
     bio: `Hola mi nombre es William, soy un Full Stack Developer entusiasta y positivo. Me encanta aprender, considero que es una herramienta para mejorar y evolucionar. Me cautivó el mundo I.T. por su dinámica, en constante cambio. 
 
     Inicié en este campo por un curso de programación básica en #Platzi, donde hice la escuela de #JavaScript. Luego me llegó la oportunidad de realizar el Bootcamp #Henry, en donde aprendí y tuve la experiencia de realizar algunos proyectos en: #JavaScript, #React.JS, #Redux, #Node.JS, #Express, #PosgreSQL, #Html, #Css, #Github, entre otras tecnologías, aplicando metodologías ágiles (#SCRUM). 
