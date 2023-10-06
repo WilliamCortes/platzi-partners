@@ -8,7 +8,8 @@ const nextConfig = {
       'avatar.tobi.sh',
       'cloudflare-ipfs.com',
       'loremflickr.com',
-      'res.cloudinary.com'
+      'res.cloudinary.com',
+      'lh3.googleusercontent.com'
     ]
   },
   experimental: {

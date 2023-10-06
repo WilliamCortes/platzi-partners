@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { MenuIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { TCustomSession } from 'pages/api/auth/[...nextauth]';
+import signUp from '@/public/assets/icons/signup.png';
 
 type TCustomSessionClient = {
   data: TCustomSession;
@@ -21,6 +22,10 @@ export default function Navbar({
   const { data: session, status } = sessionClient;
   const [loading, setLoading] = useState(false);
 
+  const handleSignOut = () => {
+    signOut();
+  };
+
   return (
     <nav
       className="absolute right-0 w-full flex items-center justify-between md:justify-end px-4 h-16"
@@ -34,6 +39,21 @@ export default function Navbar({
         <span className="sr-only">Open sidebar</span>
         <MenuIcon className="h-6 w-6" aria-hidden="true" />
       </button>
+      {status !== 'loading' && session?.user && (
+        <button
+          className="w-8 h-8 mr-6 rounded-full overflow-hidden"
+          onClick={handleSignOut}
+        >
+          <Image
+            src={signUp}
+            alt="sign up"
+            width={300}
+            height={300}
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2PYsGHDfwAHNAMQumvbogAAAABJRU5ErkJggg=="
+          />
+        </button>
+      )}
       {status !== 'loading' &&
         (session?.user ? (
           <Link href={`/${session?.username}`} legacyBehavior>
@@ -65,7 +85,7 @@ export default function Navbar({
                 : 'bg-black hover:bg-white border-black'
             } w-36 h-8 py-1 text-white hover:text-black border rounded-md text-sm transition-all`}
           >
-            {loading ? <LoadingDots color="gray" /> : 'Log in with GitHub'}
+            {loading ? <LoadingDots color="gray" /> : 'Log in'}
           </button>
         ))}
     </nav>

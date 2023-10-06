@@ -56,14 +56,25 @@ export default NextAuth({
       }
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID as string,
-      clientSecret: process.env.GOOGLE_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       authorization: {
         params: {
           prompt: 'consent',
           access_type: 'offline',
           response_type: 'code'
         }
+      },
+      profile(profile) {
+        return {
+          id: profile.email,
+          name: profile.name,
+          username: profile.given_name,
+          email: profile.email,
+          image: profile.picture,
+          followers: 0,
+          verified: profile.email_verified
+        };
       }
     })
   ],
@@ -84,9 +95,6 @@ export default NextAuth({
       return session;
     },
     async signIn({ account, profile }) {
-      console.log('🚀 ~ file: [...nextauth].ts:73 ~ signIn ~ profile:', {
-        profile
-      });
       if (account?.provider === 'google') {
         return true;
       }
