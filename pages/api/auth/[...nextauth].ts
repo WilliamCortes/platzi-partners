@@ -67,7 +67,7 @@ export default NextAuth({
       },
       profile(profile) {
         return {
-          id: profile.email,
+          id: Buffer.from(profile.email).toString('base64'),
           name: profile.name,
           username: profile.given_name,
           email: profile.email,
@@ -94,7 +94,13 @@ export default NextAuth({
       } as unknown as ICustomSession;
       return session;
     },
-    async signIn({ account, profile }) {
+    async signIn({ account, profile, user, credentials }) {
+      console.log('🚀 ~ file: [...nextauth].ts:98 ~ signIn ~ account:', {
+        account,
+        profile,
+        user,
+        credentials
+      });
       if (account?.provider === 'google') {
         return true;
       }
